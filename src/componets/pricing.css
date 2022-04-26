@@ -1,0 +1,73 @@
+ul.green-tick {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.green-tick li {
+  background: url(https://oxygen.test/wp-content/uploads/2018/10/green-tick.png) no-repeat left top;
+  background-size: 40px 40px;
+  padding-left: 60px;
+  margin-bottom: 20px;
+}
+@keyframes growProgressBar {
+  0%, 33% { --pgPercentage: 0; }
+  100% { --pgPercentage: var(--value); }
+}
+
+@property --pgPercentage {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 80;
+}
+
+div[role="progressbar"] {
+  --size: 3.8rem;
+  --fg: rgb(222, 24, 24);
+  --bg: #def;
+  --pgPercentage: var(--value);
+  animation: growProgressBar 3s 1 forwards;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: 
+    radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+    ;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc(var(--size) / 5);
+  color: var(--fg);
+}
+
+div[role="progressbar"]::before {
+  counter-reset: percentage 80;
+  content: counter(percentage) '%';
+}
+
+/* demo */
+
+ul.tick {
+  list-style: none;
+}
+
+ul.tick>li:before {
+  content: '✓';
+  padding-right: 3px;
+  margin-right: 8px;
+  color: blue;
+  font-weight: 900;
+  text-decoration-thickness: 900;
+}
+p.b{
+  color: blue;
+  margin-top: 10px;
+  font-size: 13px;
+}
+small.r{
+  color:red;
+}
+div.plan{
+  font-size:10px;
+}
